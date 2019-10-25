@@ -1,0 +1,19 @@
+URL : 194.94.239.125:9000/publish
+
+**** CREATE USER *******
+
+Request Message : 
+{
+	"type": "created-user",
+    "sender": "pm-user",
+    "concernedUsers": ["1"],
+    "payload": {
+        "userId": "1",
+        "username": "khashmi",
+        "firstName": "khurram",
+        "lastName": "hashmi"
+    },
+    "tags": [
+        "user", "account"
+    ]
+}
