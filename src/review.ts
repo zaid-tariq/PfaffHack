@@ -1,4 +1,3 @@
-
 class Review {
     id: number;
     writtenBy: number;

@@ -16,6 +16,11 @@ class User {
         this.email = email;
     }
 
+    Sign_up(firstName: string, lastName: string, username: string, password: string, contact: string, email: string){
+        let user = new User(firstName, lastName, username, password, contact, email);
+        
+    }
+
     Ride_Offer() {
         
     }
