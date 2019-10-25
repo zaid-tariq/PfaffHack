@@ -1,4 +1,4 @@
-require("knockout", function(){
+require(["knockout"], function(){
 
 	ko.bindingHandlers.stopBinding = {
 	    init: function() {
