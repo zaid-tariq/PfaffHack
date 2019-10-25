@@ -1,14 +1,5 @@
-
-class User {
-    id: number;
-    firstName: string;
-    lastName: string;
-    username: string;
-    password: string;
-    contact: string;
-    email: string;
-    
-    constructor(firstName: string, lastName: string, username: string, password: string, contact: string, email: string){
+var User = /** @class */ (function () {
+    function User(firstName, lastName, username, password, contact, email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -16,10 +7,8 @@ class User {
         this.contact = contact;
         this.email = email;
     }
-
-    Sign_up(firstName: string, lastName: string, username: string, password: string, contact: string, email: string){
-        let user = new User(firstName, lastName, username, password, contact, email);
-
+    User.prototype.Sign_up = function (firstName, lastName, username, password, contact, email) {
+        var user = new User(firstName, lastName, username, password, contact, email);
         var apiData = {
             "type": "create-user",
             "sender": "A-Team",
@@ -34,17 +23,15 @@ class User {
             "tags": [
                 "user", "account"
             ]
-        }
-
+        };
         $.ajax({
             type: "POST",
             url: "http://194.94.239.125:9000/publish",
             data: apiData,
-            success: function(responseJson)
-				{
-					console.info(responseJson)
-				}
+            success: function (responseJson) {
+                console.info(responseJson);
+            }
         });
-
-    }
-}
+    };
+    return User;
+}());
