@@ -1,0 +1,16 @@
+<div id="rangeViolationView">
+
+	<p> <b data-bind="text: name"></b> </p>
+	<hr>
+	<p data-bind="text: message"></p>
+
+	<ul data-bind="foreach: featuresToDisplay">
+		
+		<li>
+			<span data-bind="text: number"></span>
+			<input type="checkbox" data-bind="value: isSelected"></input>
+		</li>
+
+	</div>
+	
+</div>
