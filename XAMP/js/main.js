@@ -29,6 +29,10 @@ require(["config/config"], function(){
 					case "SignUp".toLowerCase():
 						g_BaseVM.showSingUpPage()
 						break;
+					
+					case "SignIn".toLowerCase():
+						g_BaseVM.showSignInPage()
+						break;
 
 					case "Admin".toLowerCase():
 					case "Home".toLowerCase():

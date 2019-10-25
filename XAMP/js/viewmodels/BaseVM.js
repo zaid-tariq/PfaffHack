@@ -92,7 +92,11 @@ define(["binder"], function(_binder){
 
 		self.showSingUpPage = function(){
 
-			// alert("here")
+			binder.loadView("SignUp", "SignUp", "singup")
+		}
+
+		self.showSingUpPage = function(){
+
 			binder.loadView("SignUp", "SignUp", "singup")
 		}
 

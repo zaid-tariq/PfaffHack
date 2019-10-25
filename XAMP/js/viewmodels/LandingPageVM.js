@@ -27,7 +27,6 @@ define([], function(){
 		}
 
 		self.onLoad = function(){
-			alert("Landing");
 		}
 
 		self.onExit = function(){
