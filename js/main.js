@@ -33,7 +33,11 @@ require(["config/config"], function(){
 					case "SignIn".toLowerCase():
 						g_BaseVM.showSignInPage()
 						break;
-
+					
+					case "RideOffer".toLowerCase():
+						g_BaseVM.showRideOfferPage()
+						break;
+						
 					case "Admin".toLowerCase():
 					case "Home".toLowerCase():
 						if(g_BaseVM)

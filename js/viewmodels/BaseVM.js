@@ -100,6 +100,11 @@ define(["binder"], function(_binder){
 			binder.loadView("SignUp", "SignUp", "signup")
 		}
 
+		self.showRideOfferPage = function(){
+
+			binder.loadView("RideOffer", "RideOffer", "RideOffer")
+		}
+
 		self.onLoad = function(){		
 			// alert("BaseVM");
 		}
