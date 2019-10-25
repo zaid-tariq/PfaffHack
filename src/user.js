@@ -1,37 +1,36 @@
 var User = /** @class */ (function () {
-    function User(firstName, lastName, username, password, contact, email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.contact = contact;
-        this.email = email;
-    }
-    User.prototype.Sign_up = function (firstName, lastName, username, password, contact, email) {
-        var user = new User(firstName, lastName, username, password, contact, email);
+    function User() {
         var apiData = {
             "type": "create-user",
             "sender": "A-Team",
             "payload": {
-                "username": user.username,
-                "firstName": user.firstName,
-                "lastName": user.lastName,
-                "password": user.password,
-                "contact": user.contact,
-                "email": user.email
+                "username": "user.username",
+                "firstName": "user.firstName",
+                "lastName": "user.lastName",
+                "password": "user.password",
+                "contact": "user.contact",
+                "email": "user.email"
             },
             "tags": [
                 "user", "account"
             ]
         };
-        $.ajax({
-            type: "POST",
-            url: "http://194.94.239.125:9000/publish",
-            data: apiData,
-            success: function (responseJson) {
-                console.info(responseJson);
-            }
+        var eventBroker = require('../js/eventBrokerConnector')({
+            brokerHost: '194.94.239.125',
+            brokerPort: '9000',
+            appName: 'test-app',
+            appHost: 'localhost',
+            appPort: '8080'
         });
-    };
+        eventBroker.subscribe('create-user', function (event) { return console.log("event subscribed"); } /* do something when this event occurs */);
+        eventBroker.listen();
+        eventBroker.request('create-user', {
+            apiData: apiData
+        })
+            .then(function (res) {
+            console.log(res); /* continue after someone responed to your request event - will timeout if no response was given after 30 seconds */
+        })["catch"](function (err) { return console.log(err); } /* heal after request error */);
+    }
     return User;
 }());
+var user = new User();
