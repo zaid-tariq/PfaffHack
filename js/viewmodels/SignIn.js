@@ -1,7 +1,7 @@
 define([], function() {
   function SignInVM() {
     var self = this;
-    self.myName = ko.observable("Sign IN");
+    self.myName = ko.observable("Sign In");
     self.username = ko.observable();
     self.firstName = ko.observable();
     self.lastName = ko.observable();

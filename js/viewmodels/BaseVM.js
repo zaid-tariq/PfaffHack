@@ -90,10 +90,16 @@ define(["binder"], function(_binder){
 			binder.loadView("Landing Page", "LandingPageVM", "landingPage")
 		}
 
+		self.showRideSearchPage = function(){
+
+			binder.loadView("RideSearch", "RideSearch", "ridesearch")
+		}
+
 		self.showSignInPage = function(){
 
 			binder.loadView("SignIn", "SignIn", "signin")
 		}
+		
 
 		self.showSignUpPage = function(){
 

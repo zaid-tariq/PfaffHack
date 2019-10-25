@@ -6,6 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/chosen.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 
 	
@@ -24,9 +26,10 @@
 
 	        <div id="navbar" class="navbar-collapse collapse">
 	        	<ul class="nav navbar-nav navbar-right" data-bind="if: showMenuButtons">
-		            <li><button class="btn btn-link" data-bind="click: showLandingPage">Home</button></li>
+					<li><button class="btn btn-link" data-bind="click: showLandingPage">Home</button></li>
+					<li><button class="btn btn-link" data-bind="click: showRideSearchPage">Ride Search</button></li>
 		            <li><button class="btn btn-link" data-bind="click: showSignInPage">Sign In</button></li>
-		            <li class="active"><button class="btn btn-link" data-bind="click: showSignUpPage">Sign Up</button></li>
+		            <li><button class="btn btn-link" data-bind="click: showSignUpPage">Sign Up</button></li>
 	          	</ul>
 	        </div>
 
