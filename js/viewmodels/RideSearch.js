@@ -1,5 +1,5 @@
 define([], function() {
-    function SignInVM() {
+    function RideSearchVM() {
       var self = this;
       self.myName = ko.observable("Ride Search");
       self.username = ko.observable();
@@ -27,7 +27,7 @@ define([], function() {
   
     return {
       getInstance: function() {
-        return new SignInVM();
+        return new RideSearchVM();
       }
     };
   });

@@ -1,6 +1,6 @@
 <div id="ridesearch">
     <h1 data-bind="text: myName"></h1>
-  
+    <br><br>
     <form>
     <div class="row">
         <div class="col-md-12"> 
@@ -28,14 +28,22 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="form-group">
-                <label>Date:</label>
-                <input type="date" class="form-control" name="bday">
-                <input type="subit">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="date" class="form-control" name="bday">
+                </div>
             </div>
         </div>
     </div>
-      <button type="submit" class="btn btn-primary" data-bind="click: submit">Search</button>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary" data-bind="click: submit">Search</button>
+            </div>
+        </div>
+    </div>
     </form>
   </div>
   
