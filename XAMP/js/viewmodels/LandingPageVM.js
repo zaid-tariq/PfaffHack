@@ -26,6 +26,14 @@ define([], function(){
 			g_BaseVM.showRulesPage()
 		}
 
+		self.showSignInPage = function(){
+			g_BaseVM.showSignInPage();
+		}
+
+		self.showSignUpPage = function(){
+			g_BaseVM.showSignUpPage();
+		}
+
 		self.onLoad = function(){
 		}
 

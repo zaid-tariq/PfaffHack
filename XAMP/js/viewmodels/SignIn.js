@@ -1,7 +1,7 @@
 define([], function() {
   function SignInVM() {
     var self = this;
-    self.myName = ko.observable("Zaid Observable");
+    self.myName = ko.observable("Sign IN");
     self.username = ko.observable();
     self.firstName = ko.observable();
     self.lastName = ko.observable();
@@ -9,11 +9,11 @@ define([], function() {
     self.onLoad = function() {};
 
     self.reset = function() {
-      alert("reset");
+      // alert("reset");
     };
 
     self.onExit = function() {
-      alert("onexit");
+      // alert("onexit");
       self.reset();
     };
 

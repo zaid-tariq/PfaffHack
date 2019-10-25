@@ -7,7 +7,7 @@ define(["binder"], function(_binder){
 		var self = this;
 		var loadingSemaphore = 0;
 
-		self.showMenuButtons = ko.observable(false)
+		self.showMenuButtons = ko.observable(true)
 		self.loadingText = ko.observable("")
 		self.warningText = ko.observable("");
 
@@ -85,23 +85,23 @@ define(["binder"], function(_binder){
 
 		self.showLandingPage = function(){
 			
-			self.showSingUpPage()
+			// self.showSingUpPage()
 			// self.showMenuButtons(false)
-			// binder.loadView("Landing Page", "LandingPageVM", "landingPage")
+			binder.loadView("Landing Page", "LandingPageVM", "landingPage")
 		}
 
-		self.showSingUpPage = function(){
+		self.showSignInPage = function(){
 
-			binder.loadView("SignUp", "SignUp", "singup")
+			binder.loadView("SignIn", "SignIn", "signin")
 		}
 
-		self.showSingUpPage = function(){
+		self.showSignUpPage = function(){
 
-			binder.loadView("SignUp", "SignUp", "singup")
+			binder.loadView("SignUp", "SignUp", "signup")
 		}
 
 		self.onLoad = function(){		
-			alert("BaseVM");
+			// alert("BaseVM");
 		}
 
 		self.showLoadingPopup = function(text){
