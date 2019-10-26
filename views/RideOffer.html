@@ -3,49 +3,50 @@
   <br /><br />
   <form>
     <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Start Point</label>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-md-10">
             <input
               class="form-control"
-              placeholder="From"
+              placeholder="Start Point"
               data-bind="value: searchQuery"
             />
           </div>
-          <div data-bind="foreach: addressSuggestions">
-            <div
-              class="address-search-result"
-              data-bind="html: label, click: $parent.chooseThisPlace, css:{'address-search-result-selected': ($parent.selectedAddress() && $parent.selectedAddress().locationId == locationId)}"
-            ></div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" data-bind="click: searchAddress">
+              Search
+            </button>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>End Point</label>
-            <input
-              class="form-control"
-              placeholder="From"
-              data-bind="value: username"
-            />
-          </div>
+        <div data-bind="foreach: addressSuggestions">
+          <div
+            class="address-search-result"
+            data-bind="html: label, click: $parent.chooseThisPlace, css:{'address-search-result-selected': ($parent.selectedAddress() && $parent.selectedAddress().locationId == locationId)}"
+          ></div>
         </div>
       </div>
-    </div>
 
-    <br />
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6">
-          <button
-            type="submit"
-            class="btn btn-primary"
-            data-bind="click: searchAddress"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
+      <div class="col-md-6">
+            <div class="form-group row">
+              <div class="col-md-10">
+                <input
+                  class="form-control"
+                  placeholder="Start Point"
+                  data-bind="value: searchQuery2"
+                />
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" data-bind="click: searchAddress2">
+                  Search
+                </button>
+              </div>
+            </div>
+            <div data-bind="foreach: addressSuggestions2">
+              <div
+                class="address-search-result"
+                data-bind="html: label, click: $parent.chooseThisPlace2, css:{'address-search-result-selected': ($parent.selectedAddress2() && $parent.selectedAddress2().locationId == locationId)}"
+              ></div>
+            </div>
+          </div>
   </form>
 </div>

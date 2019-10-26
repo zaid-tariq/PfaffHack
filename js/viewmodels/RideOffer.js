@@ -8,53 +8,69 @@ define([], function() {
     self.searchQuery = ko.observable("");
     self.addressSuggestions = ko.observableArray();
     self.selectedAddress = ko.observable();
+    self.searchQuery2 = ko.observable("");
+    self.addressSuggestions2 = ko.observableArray();
+    self.selectedAddress2 = ko.observable();
     self.APP_ID = "WpwySCOwyFoixH4fFs0B";
     self.APP_CODE = "SDh1tnEiV0cj1ZYtojznQA";
-    self.Query = "Pariser+1+Berl";
 
     self.onLoad = function() {};
 
     self.searchAddress = function() {
-      url =
+      self.sendRequestToHereAPI(self.searchQuery(), function(res){
+        self.addressSuggestions(res["suggestions"]);
+      })
+    };
+
+    self.searchAddress2 = function() {
+        self.sendRequestToHereAPI(self.searchQuery2(), function(res){
+          self.addressSuggestions2(res["suggestions"]);
+        })
+      };
+
+    self.sendRequestToHereAPI = function(query, callback){
+
+        url =
         "http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=" +
         self.APP_ID +
         "&app_code=" +
         self.APP_CODE +
         "&query=" +
-        self.searchQuery() +
+        query +
         "&beginHighlight=<b>&endHighlight=</b>";
       $.ajax({
         url: url,
-        success: function(res) {
-          console.info(res);
-          self.addressSuggestions(res["suggestions"]);
-        },
+        success: callback,
         error: function(res) {
           console.info("ERROR");
           console.info(res);
         }
       });
-    };
+
+    }
 
     self.chooseThisPlace = function(point) {
-      console.info(point);
       self.selectedAddress(point);
       console.info(self.selectedAddress());
     };
 
+    self.chooseThisPlace2 = function(point) {
+        self.selectedAddress2(point);
+        console.info(self.selectedAddress2());
+      };
+
     self.reset = function() {
-      // alert("reset");
     };
 
     self.onExit = function() {
-      // alert("onexit");
       self.reset();
     };
 
     self.submit = function() {
-      console.info(self.firstName());
-      console.info(self.lastName());
-      console.info(self.username());
+
+        sessionStorage.setItem('start', self.selectedAddress())
+        sessionStorage.setItem('start', self.selectedAddress2())
+        
     };
   }
 
