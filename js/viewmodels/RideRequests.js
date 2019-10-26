@@ -1,7 +1,7 @@
 define([], function() {
-  function UpcomingRides() {
+  function RideRequests() {
     var self = this;
-    self.myName = ko.observable("Upcoming Rides");
+    self.myName = ko.observable("Ride Requests");
     self.username = ko.observable();
     self.firstName = ko.observable();
     self.lastName = ko.observable();
@@ -17,19 +17,35 @@ define([], function() {
           id: "1",
           by: "user1",
           from: "startlocation",
-          to: "endlocation",
-          seats: ko.observable(4)
+          to: "endlocation"
         },
         {
           id: "2",
           by: "user2",
           from: "startlocation",
-          to: "endlocation",
-          seats: ko.observable(2)
+          to: "endlocation"
         }
       ];
 
       self.ridesList(res);
+    };
+
+    self.selectRide = function(arg) {
+      arr = self.ridesList();
+      g_BaseVM.proceedWithWarning(
+        arg.by + " - " + arg.from + " - " + arg.to,
+        function() {
+          for (i in arr) {
+            var objj = arr[i];
+            if (objj.id == arg.id) {
+                arr.splice(i, 1);
+                self.ridesList(arr);
+                g_BaseVM.setFootNote("RIDE ACCEPTED", "success");
+                break;
+            }
+          }
+        }
+      );
     };
 
     self.reset = function() {
@@ -50,7 +66,7 @@ define([], function() {
 
   return {
     getInstance: function() {
-      return new UpcomingRides();
+      return new RideRequests();
     }
   };
 });

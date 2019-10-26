@@ -76,6 +76,14 @@ define(["binder"], function(_binder) {
       binder.loadView("Create Rules", "CreateRulesVM", "createRulesPage");
     };
 
+<<<<<<< HEAD
+=======
+    self.showRideReviewpage = function() {
+      self.showMenuButtons(true);
+      binder.loadView("RideReview", "RideReview", "ridereview");
+    };
+
+>>>>>>> f5e9955c52e310210f110bc83114a673e04d9862
     self.showLandingPage = function() {
       // self.showSingUpPage()
       // self.showMenuButtons(false)
@@ -90,6 +98,13 @@ define(["binder"], function(_binder) {
       binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides");
     };
 
+<<<<<<< HEAD
+=======
+    self.showRideRequestspage = function() {
+      binder.loadView("RideRequests", "RideRequests", "riderequests");
+    };
+
+>>>>>>> f5e9955c52e310210f110bc83114a673e04d9862
     self.showSignInPage = function() {
       binder.loadView("SignIn", "SignIn", "signin");
     };

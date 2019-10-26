@@ -18,11 +18,7 @@ const eventBroker = require('./eventBrokerConnector')({
 // only then you will receive notifications upon events you subscribed to
 eventBroker.listen()
 
-
-// app.get('/', (request, response) => {
-//   response.send('Welcome to the API which does everything!')}
-
-app.post('/create-user', (request, response) => {
+app.get('/create-user', (request, response) => {
   first_name = request.headers["firstName"]
   last_name = request.headers["lastName"]
   user_name = request.headers["userName"]
@@ -30,7 +26,7 @@ app.post('/create-user', (request, response) => {
   // var instance = require('./user.js');
   // instance.create_user(user_name,first_name,last_name,eventBroker);
   eventBroker.request('create-user', {
-    "username": user_name,
+    "userName": user_name,
     "firstName": first_name,
     "lastName": last_name
     }
@@ -38,13 +34,23 @@ app.post('/create-user', (request, response) => {
         console.log(res);
     }).catch((err)=>console.log(err)) 
 
-  response.send('User Created Successfully!')
+  success_ = {
+    "statusText":"KHURRAM",
+    "status":"200"
+  }
+
+  response.send(success_);
 })
 
 app.post('/send-message', (request, response) => {
   user_name_from = request.headers["userNameFrom"]
   user_name_to = request.headers["userNameTo"]
   message = request.headers["message"]
+
+  const chat = require("./chat")
+  const new_chat = new chat()
+  
+  new_chat.send_message(user_name_from, user_name_to, message, eventBroker)
 
   response.send(message)
 })
