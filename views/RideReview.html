@@ -1,0 +1,42 @@
+<div id="ridereview">
+        <h1 data-bind="text: myName"></h1>
+        <br /><br />
+        <div class="row">
+          <table class="table table-hover">
+            <thead>
+              <th>
+                Ride Id
+              </th>
+              <th>
+                Start Point
+              </th>
+              <th>
+                End Point
+              </th>
+              <th>
+                Action
+              </th>
+            </thead>
+            <tbody data-bind="foreach: ridesList">
+              <tr>
+                <td class="address-search-result" data-bind="text: id"></td>
+      
+                <td class="address-search-result" data-bind="text: from"></td>
+      
+                <td class="address-search-result" data-bind="text: to"></td>
+      
+                <td>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    data-bind="click: $parent.selectRide"
+                  >
+                    Review
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      

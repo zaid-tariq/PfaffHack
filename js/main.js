@@ -50,6 +50,14 @@ require(["config/config"], function(){
 						g_BaseVM.showUpcomingRidespage()
 						break;
 
+					case "RideReview".toLowerCase():
+						g_BaseVM.showRideReviewpage()
+						break;
+
+					case "RideRequests".toLowerCase():
+						g_BaseVM.showRideRequestspage()
+						break;
+
 					case "Admin".toLowerCase():
 					case "Home".toLowerCase():
 						if(g_BaseVM)

@@ -1,4 +1,4 @@
-<div id="usersearchgivenendpoints">
+<div id="riderequests">
   <h1 data-bind="text: myName"></h1>
   <br /><br />
   <div class="row">
@@ -8,16 +8,13 @@
           Ride Id
         </th>
         <th>
-          Driver
+          Request By
         </th>
         <th>
           Start Point
         </th>
         <th>
           End Point
-        </th>
-        <th>
-          Seats Available
         </th>
         <th>
           Action
@@ -33,14 +30,13 @@
 
           <td class="address-search-result" data-bind="text: to"></td>
 
-          <td class="address-search-result" data-bind="text: seats"></td>
           <td>
             <button
               type="submit"
               class="btn btn-primary"
               data-bind="click: $parent.selectRide"
             >
-              Select
+              Action
             </button>
           </td>
         </tr>

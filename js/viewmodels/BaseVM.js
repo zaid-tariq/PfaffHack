@@ -83,6 +83,12 @@ define(["binder"], function(_binder){
 			binder.loadView("Create Rules", "CreateRulesVM", "createRulesPage")
 		}
 
+		self.showRideReviewpage = function(){
+
+			self.showMenuButtons(true)
+			binder.loadView("RideReview", "RideReview", "ridereview")
+		}
+
 		self.showLandingPage = function(){
 			
 			// self.showSingUpPage()
@@ -98,6 +104,11 @@ define(["binder"], function(_binder){
 		self.showUpcomingRidespage = function(){
 
 			binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides")
+		}
+
+		self.showRideRequestspage = function(){
+
+			binder.loadView("RideRequests", "RideRequests", "riderequests")
 		}
 
 		self.showSignInPage = function(){

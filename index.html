@@ -1,120 +1,178 @@
 <html>
-<head>
-	<title>Pfaff Hack</title>
-	
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/chosen.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+  <head>
+    <title>Pfaff Hack</title>
 
-<body>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/chosen.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
 
-	<nav id="header" class="navbar navbar-default navbar-fixed-top">
-      
-     	<div class="container">
+  <body>
+    <nav id="header" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div
+          id="logoSection"
+          class="col-xs-12 col-sm-6 col-md-5"
+          data-bind="click: showLandingPage "
+        >
+          <img id="logoImg" src="img/logo.png" />
+          <span>Pfaff Hack</span>
+        </div>
 
-	      	<div id="logoSection" class="col-xs-12 col-sm-6 col-md-5" data-bind="click: showLandingPage ">
-				<img id="logoImg" src="img/logo.png">
-				<span>Pfaff Hack</span>
-			</div>     
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul
+            class="nav navbar-nav navbar-right"
+            data-bind="if: showMenuButtons"
+          >
+            <li>
+              <button class="btn btn-link" data-bind="click: showLandingPage">
+                Home
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-link"
+                data-bind="click: showUserSearchGivenEndPointspage"
+              >
+                Search Results
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-link"
+                data-bind="click: showRideRequestspage"
+              >
+                Ride Requests
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-link"
+                data-bind="click: showUpcomingRidespage"
+              >
+                Upcoming Rides
+              </button>
+			</li>
+			<li>
+				<button
+					class="btn btn-link"
+					data-bind="click: showRideReviewpage"
+				>
+					Review Rides
+				</button>
+			</li>
+            <li>
+              <button
+                class="btn btn-link"
+                data-bind="click: showRideSearchPage"
+              >
+                Ride Search
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link" data-bind="click: showRideOfferPage">
+                Ride Offer
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link" data-bind="click: showSignInPage">
+                Sign In
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-link" data-bind="click: showSignUpPage">
+                Sign Up
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-	        <div id="navbar" class="navbar-collapse collapse">
-	        	<ul class="nav navbar-nav navbar-right" data-bind="if: showMenuButtons">
-					<li><button class="btn btn-link" data-bind="click: showLandingPage">Home</button></li>
-					<li><button class="btn btn-link" data-bind="click: showUserSearchGivenEndPointspage">Search Results</button></li>
-					<li><button class="btn btn-link" data-bind="click: showUpcomingRidespage">Upcoming Rides</button></li>
-					<li><button class="btn btn-link" data-bind="click: showRideSearchPage">Ride Search</button></li>
-					<li><button class="btn btn-link" data-bind="click: showRideOfferPage">Ride Offer</button></li>
-		            <li><button class="btn btn-link" data-bind="click: showSignInPage">Sign In</button></li>
-		            <li><button class="btn btn-link" data-bind="click: showSignUpPage">Sign Up</button></li>
-	          	</ul>
-	        </div>
+      <div
+        id="loadingPopup"
+        class="modal fade"
+        data-backdrop="static"
+        data-keyboard="false"
+      >
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+              <div class="col-xs-offset-5">
+                <img src="img/loading.gif" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <h4 class="text-center" data-bind="text: loadingText"></h4>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    	</div>
+      <div id="warningPopup" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Please Select</h4>
+            </div>
 
-	  	<div id="loadingPopup" class="modal fade" data-backdrop="static" data-keyboard="false">
-				<div class="modal-dialog modal-sm">
+            <div class="modal-body">
+              <span data-bind="text: warningText"></span>
+            </div>
 
-					<div class="modal-content">
-						<div class="modal-header">
-							
-						</div>
-						<div class="modal-body">
-							<div class="col-xs-offset-5">
-								<img src="img/loading.gif">	
-							</div>
-							
-						</div>
-						<div class="modal-footer">
-							<h4 class="text-center" data-bind="text: loadingText"> </h4>
-						</div>
-						
-					</div>
-					
-				</div>
-				
-		</div>
-
-		<div id="warningPopup" class="modal fade">
-			
-			<div class="modal-dialog">
-				<div class="modal-content">
-					
-					<div class="modal-header">
-						<h4> Book Ride? </h4>
-					</div>
-
-					<div class="modal-body">
-						<span data-bind="text: warningText"></span>
-					</div>
-
-					<div class="modal-footer">
-						
-						<button class="btn btn-success" data-dismiss="modal" data-bind="click: warningIgnoredCallback">
-							 Yes 
-						</button>
-						<button data-dismiss="modal" class="btn btn-default">
-							No 
-						</button>
-
-					</div>
-					
-				</div>				
-			</div>
-		</div>
-
+            <div class="modal-footer">
+              <button
+                class="btn btn-success"
+                data-dismiss="modal"
+                data-bind="click: warningIgnoredCallback"
+              >
+                Yes
+              </button>
+              <button data-dismiss="modal" class="btn btn-default">
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
 
-	<div id="appContainer" class="container">
-		
+    <div id="appContainer" class="container">
+      <div
+        id="pageContainer"
+        class="col-xs-8 col-xs-offset-2"
+        data-bind="stopBinding: true"
+      ></div>
 
-		<div id="pageContainer" class="col-xs-8 col-xs-offset-2" data-bind="stopBinding: true">			
-		</div>
+      <div id="footNotes" class="row">
+        <div class="col-xs-12 text-center">
+          <div
+            class="alert alert-success"
+            data-bind="visible: showMessage, text: msg, attr:{class: footerClass}"
+          ></div>
+        </div>
+      </div>
+    </div>
 
-		<div id="footNotes" class="row">
+    <footer class="footer">
+      <div class="container text-center">
+        Powered By <a href="http://www.xavor.com">TU KL</a>
+      </div>
+    </footer>
 
-			<div class="col-xs-12 text-center">
-				<div class="alert alert-success" data-bind="visible: showMessage, text: msg, attr:{class: footerClass}"></div>
-			</div>
-
-		</div>
-		
-	</div>
-
-	<footer class="footer">
-		<div class="container text-center">
-			Powered By <a href="http://www.xavor.com">TU KL</a>	
-		</div>
-	</footer>
-	
-
-	<script type="text/javascript" src="js/lib/jquery.js"></script>
-	<script type="text/javascript" src="js/lib/knockout.js"></script>
-	<script type="text/javascript" src="js/lib/bootstrap.js"></script>
-	<script type="text/javascript" src="js/lib/chosen.js"></script>
-	<script type="text/javascript" src="js/lib/sammy.js"></script>
-	<script type="text/javascript" data-main="js/main" src="js/lib/require.js"></script>	
-	
-</body>
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/knockout.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="js/lib/chosen.js"></script>
+    <script type="text/javascript" src="js/lib/sammy.js"></script>
+    <script
+      type="text/javascript"
+      data-main="js/main"
+      src="js/lib/require.js"
+    ></script>
+  </body>
 </html>
