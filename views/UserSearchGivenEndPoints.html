@@ -1,7 +1,6 @@
 <div id="usersearchgivenendpoints">
   <h1 data-bind="html: myName"></h1>
-  <h3 data-bind="html: myLocationText">
-  </h3>
+  <h3 data-bind="html: myLocationText"></h3>
   <br /><br />
   <div class="row">
     <table class="table table-hover">
@@ -14,6 +13,9 @@
         </th>
         <th>
           Start Point
+        </th>
+        <th>
+          Distance
         </th>
         <th>
           End Point
@@ -32,6 +34,7 @@
           <td class="address-search-result" data-bind="text: by"></td>
 
           <td class="address-search-result" data-bind="text: from"></td>
+          <td class="address-search-result" data-bind="text: distance"></td>
 
           <td class="address-search-result" data-bind="text: to"></td>
 
