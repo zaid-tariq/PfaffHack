@@ -1,7 +1,7 @@
+
 class User{
-
-
     constructor(username, firstName, lastName, eventBroker){
+        //const Chat = require('./chat.js');
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -14,7 +14,9 @@ class User{
        //      appPort: '8080'
        // });
         // this.app = this.eventBroker.app;
-        this.create_user();
+        // this.create_user();
+        // const s = new Chat();
+        // s.send_message("jacki", "ahhmed", "hhaha");
     }
     
 
@@ -34,4 +36,5 @@ class User{
     }
 
 }
-// var user = new User("jacki", "jack","huels");
+//var user = new User("jacki", "jack","huels");
+module.exports = User;

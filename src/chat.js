@@ -14,8 +14,9 @@ class Chat {
     //    this.send_message("jacki", "ahhmed", "hhaha");
 
     // }
+    constructor(){
 
-
+    }
     send_message(user1_name, user2_name, message, eventBroker){  
        //get_user ids
 
@@ -109,3 +110,4 @@ class Chat {
 }
 
 // var chat = new Chat();
+module.exports = Chat;
