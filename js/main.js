@@ -45,8 +45,6 @@ require(["config/config"], function() {
             g_BaseVM.showUpcomingRidespage();
             break;
 
-<<<<<<< HEAD
-=======
           case "RideReview".toLowerCase():
             g_BaseVM.showRideReviewpage();
             break;
@@ -55,7 +53,6 @@ require(["config/config"], function() {
             g_BaseVM.showRideRequestspage();
             break;
 
->>>>>>> f5e9955c52e310210f110bc83114a673e04d9862
           case "Admin".toLowerCase():
           case "Home".toLowerCase():
             if (g_BaseVM) g_BaseVM.showLandingPage();
