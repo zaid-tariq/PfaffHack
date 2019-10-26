@@ -44,9 +44,9 @@
                   </a>
                 </li> -->
                 
-                <li class="active">
+                <li>
 					<a 
-						class="btn btn-link" data-bind="click: showRideSearchPage"
+						class="btn btn-link" data-bind="click: showRideSearchPage, css:{'active-tab': currentTabName() == 'Ride Search'}"
 					>
 						Ride Search
 					</a>
@@ -54,7 +54,7 @@
 				<li>
 					<a
 						class="btn btn-link"
-						data-bind="click: showRideRequestspage"
+						data-bind="click: showRideRequestspage, css:{'active-tab': currentTabName() == 'Ride Requests'}"
 					>
 						Ride Requests
 					</a>
@@ -62,20 +62,20 @@
 				<li>
 					<a
 						class="btn btn-link"
-						data-bind="click: showUpcomingRidespage"
+						data-bind="click: showUpcomingRidespage, css:{'active-tab': currentTabName() == 'Upcoming Rides'}"
 					>
 						Upcoming Rides
 					</a>
 				</li>
 				<li>
 					<a 
-						class="btn btn-link" data-bind="click: showRideReviewpage"
+						class="btn btn-link" data-bind="click: showRideReviewpage, css:{'active-tab': currentTabName() == 'Review Rides'}"
 					>
 						Review Rides
 					</a>
 				</li>
                 <li>
-                  <a class="btn btn-link" data-bind="click: showRideOfferPage">
+                  <a class="btn btn-link" data-bind="click: showRideOfferPage, css:{'active-tab': currentTabName() == 'Ride Offer'}">
                     Ride Offer
                   </a>
                 </li>
@@ -90,7 +90,7 @@
                   </a>
 				</li> -->
 				<li>
-					<a class="btn btn-link" data-bind="click: showMessagePage">
+					<a class="btn btn-link" data-bind="click: showMessagePage, css:{'active-tab': currentTabName() == 'Message'}">
 						<i class="fa fa-envelope" style="color: #e72e36;"></i>
 					</a>
 				</li> 

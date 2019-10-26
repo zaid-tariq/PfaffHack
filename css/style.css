@@ -13,9 +13,10 @@
 	color: white;
 }
 
-.address-search-result-selected{
+.address-search-result-selected, .active-tab{
 	background-color: #e72e36;
-	color: white;
+	color: white !important;
+	font-weight: bold;
 }
 
 .navbar-default, footer {

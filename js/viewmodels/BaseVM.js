@@ -8,7 +8,7 @@ define(["binder"], function(_binder) {
     self.showMenuButtons = ko.observable(false);
     self.loadingText = ko.observable("");
     self.warningText = ko.observable("");
-
+    self.currentTabName = ko.observable("")
     self.username = ko.observable("Guest");
 
     self.msg = ko.observable("hello!");
@@ -79,6 +79,7 @@ define(["binder"], function(_binder) {
     };
 
     self.showRideReviewpage = function() {
+      self.currentTabName("Review Rides")
       self.showMenuButtons(true);
       binder.loadView("RideReview", "RideReview", "ridereview");
     };
@@ -86,34 +87,42 @@ define(["binder"], function(_binder) {
     self.showLandingPage = function() {
       // self.showSingUpPage()
       // self.showMenuButtons(false)
+      self.currentTabName("")
       binder.loadView("Landing Page", "LandingPageVM", "landingPage");
     };
 
     self.showRideSearchPage = function() {
+      self.currentTabName("Ride Search")
       binder.loadView("RideSearch", "RideSearch", "ridesearch");
 	};
 	
 	self.showMessagePage = function() {
+    self.currentTabName("Messages")
 		binder.loadView("Message", "Message", "message");
 	  };
 
     self.showUpcomingRidespage = function() {
+      self.currentTabName("Upcoming Rides")
       binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides");
     };
 
     self.showRideRequestspage = function() {
+      self.currentTabName("Ride Requests")
       binder.loadView("RideRequests", "RideRequests", "riderequests");
     };
 
     self.showSignInPage = function() {
+      self.currentTabName("")
       binder.loadView("SignIn", "SignIn", "signin");
     };
 
     self.showSignUpPage = function() {
+      self.currentTabName("")
       binder.loadView("SignUp", "SignUp", "signup");
     };
 
     self.showRideOfferPage = function() {
+      self.currentTabName("Ride Offer")
       binder.loadView("RideOffer", "RideOffer", "RideOffer");
     };
 
