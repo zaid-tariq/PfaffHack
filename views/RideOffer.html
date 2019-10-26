@@ -16,7 +16,7 @@
           <div data-bind="foreach: addressSuggestions">
             <div
               class="address-search-result"
-              data-bind="html: label, click: $parent.chooseThisPlace, css:{'address-search-result-selected': $parent.selectedAddress().locationId == this.locationId}"
+              data-bind="html: label, click: $parent.chooseThisPlace, css:{'address-search-result-selected': ($parent.selectedAddress() && $parent.selectedAddress().locationId == locationId)}"
             ></div>
           </div>
         </div>
