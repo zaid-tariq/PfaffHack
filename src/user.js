@@ -1,36 +1,36 @@
-var User = /** @class */ (function () {
-    function User() {
-        var apiData = {
-            "type": "create-user",
-            "sender": "A-Team",
-            "payload": {
-                "username": "user.username",
-                "firstName": "user.firstName",
-                "lastName": "user.lastName",
-                "password": "user.password",
-                "contact": "user.contact",
-                "email": "user.email"
-            },
-            "tags": [
-                "user", "account"
-            ]
-        };
-        var eventBroker = require('../js/eventBrokerConnector')({
+class User{
+
+
+    constructor(username, firstName, lastName){//, eventBroker){
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        //this.eventBroker = event.Broker;
+        this.eventBroker = require('../js/eventBrokerConnector')({
             brokerHost: '194.94.239.125',
             brokerPort: '9000',
             appName: 'test-app',
-            appHost: 'localhost',
+            appHost: '192.168.137.1',
             appPort: '8080'
-        });
-        eventBroker.subscribe('create-user', function (event) { return console.log("event subscribed"); } /* do something when this event occurs */);
-        eventBroker.listen();
-        eventBroker.request('create-user', {
-            apiData: apiData
-        })
-            .then(function (res) {
-            console.log(res); /* continue after someone responed to your request event - will timeout if no response was given after 30 seconds */
-        })["catch"](function (err) { return console.log(err); } /* heal after request error */);
+       });
+       this.app = this.eventBroker.app;
+       this.create_user();
     }
-    return User;
-}());
-var user = new User();
+    
+
+    create_user(){
+        // eventBroker.subscribe('create-user', (event, topic) => console.log(event) /* do something when this event occurs */
+        // )
+        this.eventBroker.listen();
+       
+        this.eventBroker.request('create-user', {
+                "username": this.username,
+                "firstName": this.firstName,
+                "lastName": this.lastName            }
+        ).then((res)=>{
+            console.log(res);
+        }).catch((err)=>console.log(err))
+    }
+
+}
+var user = new User("jacki", "jack","huels");
