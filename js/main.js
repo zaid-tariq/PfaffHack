@@ -46,6 +46,10 @@ require(["config/config"], function(){
 						g_BaseVM.showUserSearchGivenEndPointspage()
 						break;
 
+					case "UpcomingRides".toLowerCase():
+						g_BaseVM.showUpcomingRidespage()
+						break;
+
 					case "Admin".toLowerCase():
 					case "Home".toLowerCase():
 						if(g_BaseVM)
