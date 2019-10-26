@@ -8,6 +8,7 @@ define([], function() {
     self.ridesList = ko.observableArray();
     self.myStartPos = ko.observable()
     self.myEndPos = ko.observable()
+    self.myLocationText = ko.observable()
     self.APP_ID = "WpwySCOwyFoixH4fFs0B";
     self.APP_CODE = "SDh1tnEiV0cj1ZYtojznQA";
 
@@ -36,18 +37,18 @@ define([], function() {
     }
 
     self.onLoad = function() {
-      if (localStorage.getItem("start") === null) {
-        //...
+      if (  null === sessionStorage.getItem("start")) {
       } else {
         console.info(sessionStorage.getItem("start"));
         console.info(sessionStorage.getItem("end"));
-        s
-        self.sendRequestToHereAPI(essionStorage.getItem("start"), function(start){
+        self.myLocationText(sessionStorage.getItem("start") + "  <br> ->" + sessionStorage.getItem("end"))
+        
+        self.sendRequestToHereAPI(sessionStorage.getItem("start"), function(start){
           self.myStartPos(start)
           console.info(self.myStartPos());
         })
 
-        self.sendRequestToHereAPI(essionStorage.getItem("end"), function(end){
+        self.sendRequestToHereAPI(sessionStorage.getItem("end"), function(end){
             self.myEndPos(end)
             console.info(self.myEndPos());
         })
