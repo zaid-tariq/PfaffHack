@@ -95,6 +95,11 @@ define(["binder"], function(_binder){
 			binder.loadView("RideSearch", "RideSearch", "ridesearch")
 		}
 
+		self.showUpcomingRidespage = function(){
+
+			binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides")
+		}
+
 		self.showSignInPage = function(){
 
 			binder.loadView("SignIn", "SignIn", "signin")
