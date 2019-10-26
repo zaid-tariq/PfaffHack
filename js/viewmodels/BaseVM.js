@@ -1,159 +1,141 @@
-define(["binder"], function(_binder){
+define(["binder"], function(_binder) {
+  var binder = _binder;
 
-	var binder = _binder
+  function BaseVM() {
+    var self = this;
+    var loadingSemaphore = 0;
 
-	function BaseVM(){
+    self.showMenuButtons = ko.observable(true);
+    self.loadingText = ko.observable("");
+    self.warningText = ko.observable("");
 
-		var self = this;
-		var loadingSemaphore = 0;
+    self.msg = ko.observable("hello!");
+    self.showMessage = ko.observable(false);
 
-		self.showMenuButtons = ko.observable(true)
-		self.loadingText = ko.observable("")
-		self.warningText = ko.observable("");
+    self.footerClass = ko.observable("alert alert-info");
 
-		self.msg = ko.observable("hello!")
-		self.showMessage = ko.observable(false)
-		
-		self.footerClass = ko.observable("alert alert-info")
+    self.setFootNote = function(msg, type, timeout) {
+      self.msg(msg);
+      self.showMessage(true);
 
-		self.setFootNote = function(msg, type, timeout){
+      //if(type)
+      switch (type) {
+        case "error":
+          self.footerClass("alert alert-danger");
+          break;
 
-			self.msg(msg)
-			self.showMessage(true)
+        case "success":
+          self.footerClass("alert alert-success");
+          break;
 
-			//if(type)
-				switch(type){
+        case "warning":
+          self.footerClass("alert alert-warning");
+          break;
 
-					case "error":
-						self.footerClass("alert alert-danger")
-						break;
+        default:
+          self.footerClass("alert alert-info");
+      }
 
-					case "success":
-						self.footerClass("alert alert-success") 
-						break;
+      timeout = 5000;
+      if (timeout)
+        setTimeout(function() {
+          self.showMessage(false);
+        }, timeout);
+    };
 
-					case "warning":
-						self.footerClass("alert alert-warning");
-						break;
+    self.warningIgnoredCallback = function() {
+      //override this
+    };
 
-					default:
-						self.footerClass("alert alert-info")					
-				}
+    self.warningHeededCallback = function() {
+      //override this
+    };
 
-			timeout = 5000;
-			if(timeout)
-				setTimeout(function(){
-							self.showMessage(false)
-						}, timeout);
+    self.proceedWithWarning = function(
+      warningText,
+      callbackIfYes,
+      callbackIfNo
+    ) {
+      self.warningText(warningText);
 
-		}
+      if (callbackIfYes) self.warningIgnoredCallback = callbackIfYes;
 
-		self.warningIgnoredCallback = function(){
-			//override this
-		}
+      //not incorporated in html yet
+      if (callbackIfNo) self.warningHeededCallback = callbackIfNo;
 
-		self.warningHeededCallback = function(){
-			//override this
-		}
+      $("#warningPopup").modal("show");
+    };
 
-		self.proceedWithWarning = function(warningText, callbackIfYes, callbackIfNo){
+    self.showBomPage = function() {
+      self.showMenuButtons(true);
+      binder.loadView("Create BOM", "CreateBomVM", "createBomPage");
+    };
 
-			self.warningText(warningText);
-			
-			if(callbackIfYes)
-				self.warningIgnoredCallback = callbackIfYes;
-			
-			//not incorporated in html yet
-			if(callbackIfNo)
-				self.warningHeededCallback = callbackIfNo;
+    self.showRulesPage = function() {
+      self.showMenuButtons(true);
+      binder.loadView("Create Rules", "CreateRulesVM", "createRulesPage");
+    };
 
-			$("#warningPopup").modal("show");
-		}
-		
+    self.showLandingPage = function() {
+      // self.showSingUpPage()
+      // self.showMenuButtons(false)
+      binder.loadView("Landing Page", "LandingPageVM", "landingPage");
+    };
 
-		self.showBomPage = function(){		
-			
-			self.showMenuButtons(true)
-			binder.loadView("Create BOM", "CreateBomVM", "createBomPage")
-		}
+    self.showRideSearchPage = function() {
+      binder.loadView("RideSearch", "RideSearch", "ridesearch");
+    };
 
-		self.showRulesPage = function(){
+    self.showUpcomingRidespage = function() {
+      binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides");
+    };
 
-			self.showMenuButtons(true)
-			binder.loadView("Create Rules", "CreateRulesVM", "createRulesPage")
-		}
+    self.showSignInPage = function() {
+      binder.loadView("SignIn", "SignIn", "signin");
+    };
 
-		self.showLandingPage = function(){
-			
-			// self.showSingUpPage()
-			// self.showMenuButtons(false)
-			binder.loadView("Landing Page", "LandingPageVM", "landingPage")
-		}
+    self.showSignUpPage = function() {
+      binder.loadView("SignUp", "SignUp", "signup");
+    };
 
-		self.showRideSearchPage = function(){
+    self.showRideOfferPage = function() {
+      binder.loadView("RideOffer", "RideOffer", "RideOffer");
+    };
 
-			binder.loadView("RideSearch", "RideSearch", "ridesearch")
-		}
+    self.showUserSearchGivenEndPointspage = function() {
+      binder.loadView(
+        "UserSearchGivenEndPoints",
+        "UserSearchGivenEndPoints",
+        "usersearchgivenendpoints"
+      );
+    };
 
-		self.showUpcomingRidespage = function(){
+    self.onLoad = function() {
+      // alert("BaseVM");
+    };
 
-			binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides")
-		}
+    self.showLoadingPopup = function(text) {
+      if (loadingSemaphore == 0);
+      $("#loadingPopup").modal("show");
 
-		self.showSignInPage = function(){
+      loadingSemaphore++;
 
-			binder.loadView("SignIn", "SignIn", "signin")
-		}
-		
+      if (text) self.loadingText(text);
+    };
 
-		self.showSignUpPage = function(){
+    self.hideLoadingPopup = function() {
+      loadingSemaphore--;
 
-			binder.loadView("SignUp", "SignUp", "signup")
-		}
+      if (loadingSemaphore == 0);
+      $("#loadingPopup").modal("hide");
 
-		self.showRideOfferPage = function(){
+      self.loadingText("");
+    };
+  }
 
-			binder.loadView("RideOffer", "RideOffer", "RideOffer")
-		}
-
-		self.showUserSearchGivenEndPointspage = function(){
-
-			binder.loadView("UserSearchGivenEndPoints", "UserSearchGivenEndPoints", "usersearchgivenendpoints")
-		}
-
-		self.onLoad = function(){		
-			// alert("BaseVM");
-		}
-
-		self.showLoadingPopup = function(text){
-
-			if(loadingSemaphore == 0);
-				$("#loadingPopup").modal("show")
-
-			loadingSemaphore++;
-
-			if(text)
-				self.loadingText(text)
-		}
-
-		self.hideLoadingPopup = function(){
-
-			loadingSemaphore--;
-
-			if(loadingSemaphore == 0);
-				$("#loadingPopup").modal("hide")
-
-			self.loadingText("")
-		}
-
-	}
-
-	return {
-
-		getInstance: function(){
-
-			return new BaseVM()
-		}
-	}
-})
-
+  return {
+    getInstance: function() {
+      return new BaseVM();
+    }
+  };
+});
