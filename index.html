@@ -12,95 +12,77 @@
   </head>
 
   <body>
-    <nav id="header" class="navbar navbar-default navbar-fixed-top">
+    <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div
               id="logoSection"
-              class="col-md-3"
+              class="col-md-2"
               data-bind="click: showLandingPage "
             >
               <img id="logoImg" src="img/logo.png" />
               <span>Pfaff Hack</span>
             </div>
 
-            <div id="navbar" class="col-md-9" class="navbar-collapse collapse">
+            <div id="navbar" class="col-md-10" class="navbar-collapse collapse">
               <ul
                 class="nav navbar-nav navbar-right"
                 data-bind="if: showMenuButtons"
               >
-                <li>
-                  <button
-                    class="btn btn-link"
-                    data-bind="click: showLandingPage"
-                  >
+                <li class="active">
+                  <a class="btn btn-link" data-bind="click: showLandingPage">
                     Home
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
+                  <a
                     class="btn btn-link"
                     data-bind="click: showUserSearchGivenEndPointspage"
                   >
                     Search Results
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
+                  <a
                     class="btn btn-link"
                     data-bind="click: showRideRequestspage"
                   >
                     Ride Requests
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
+                  <a
                     class="btn btn-link"
                     data-bind="click: showUpcomingRidespage"
                   >
                     Upcoming Rides
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    class="btn btn-link"
-                    data-bind="click: showRideReviewpage"
-                  >
+                  <a class="btn btn-link" data-bind="click: showRideReviewpage">
                     Review Rides
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    class="btn btn-link"
-                    data-bind="click: showRideSearchPage"
-                  >
+                  <a class="btn btn-link" data-bind="click: showRideSearchPage">
                     Ride Search
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    class="btn btn-link"
-                    data-bind="click: showRideOfferPage"
-                  >
+                  <a class="btn btn-link" data-bind="click: showRideOfferPage">
                     Ride Offer
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    class="btn btn-link"
-                    data-bind="click: showSignInPage"
-                  >
+                  <a class="btn btn-link" data-bind="click: showSignInPage">
                     Sign In
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    class="btn btn-link"
-                    data-bind="click: showSignUpPage"
-                  >
+                  <a class="btn btn-link" data-bind="click: showSignUpPage">
                     Sign Up
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -192,3 +174,27 @@
     ></script>
   </body>
 </html>
+
+<script>
+  $(".nav a").on("click", function() {
+    $(".nav")
+      .find(".active")
+      .removeClass("active");
+    $(this)
+      .parent()
+      .addClass("active");
+  });
+</script>
+
+<style>
+  .navbar-inverse .navbar-nav > .active {
+    color: white;
+    background: #e72e36;
+  }
+  .navbar-inverse .navbar-nav > .active > a,
+  .navbar-inverse .navbar-nav > .active > a:hover,
+  .navbar-inverse .navbar-nav > .active > a:focus {
+    color: white;
+    background: #e72e36;
+  }
+</style>
