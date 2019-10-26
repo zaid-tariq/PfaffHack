@@ -11,28 +11,34 @@ const eventBroker = require('./eventBrokerConnector')({
   appPort: '8884',
 })
 
-
-// an express app with json body parser, you may pass your own express instance instead as second argument to the init function
-
-// you have to call listen once your setup is finished
-// only then you will receive notifications upon events you subscribed to
 eventBroker.listen()
 
+
+const store = require("./storage")
+const new_store = new store()
+
 app.get('/create-user', (request, response) => {
-  first_name = request.headers["firstName"]
-  last_name = request.headers["lastName"]
-  user_name = request.headers["userName"]
+  first_name = request.headers["firstname"]
+  last_name = request.headers["lastname"]
+  user_name = request.headers["username"]
+  user_info = {
+    "username": user_name,
+    "firstname": first_name,
+    "lastname": last_name
+  }
   
   // var instance = require('./user.js');
   // instance.create_user(user_name,first_name,last_name,eventBroker);
   eventBroker.request('create-user', {
-    "userName": user_name,
-    "firstName": first_name,
-    "lastName": last_name
+    "username": user_name,
+    "firstname": first_name,
+    "lastname": last_name
     }
     ).then((res)=>{
         console.log(res);
     }).catch((err)=>console.log(err)) 
+
+  new_store.store_information(eventBroker,user_info)  
 
   success_ = {
     "statusText":"KHURRAM",
@@ -43,8 +49,8 @@ app.get('/create-user', (request, response) => {
 })
 
 app.post('/send-message', (request, response) => {
-  user_name_from = request.headers["userNameFrom"]
-  user_name_to = request.headers["userNameTo"]
+  user_name_from = request.headers["usernamefrom"]
+  user_name_to = request.headers["usernameto"]
   message = request.headers["message"]
 
   const chat = require("./chat")
@@ -64,7 +70,14 @@ app.listen(port, (err) => {
 })
 
 
-
+app.get('/get-user', (request, response) => {
+  console.log(request.headers)
+  user_info = {
+    "username": request.headers["username"]
+  }
+  user_info = new_store.get_information(eventBroker,user_info,1)  
+  response.send(user_info);
+})
 
 
 
