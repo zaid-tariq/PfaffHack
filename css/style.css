@@ -2,15 +2,20 @@
 	white-space: normal;
 }
 
-.address-search-result:hover{
+.address-search-result{
 
-	background: #eee;
+	padding: 5px;
 	cursor: pointer;
 }
 
-.address-search-result-selected{
+.address-search-result:hover{
+	background-color: #e72e36;
+	color: white;
+}
 
-	background: #eee;
+.address-search-result-selected{
+	background-color: #e72e36;
+	color: white;
 }
 
 .navbar-default, footer {
