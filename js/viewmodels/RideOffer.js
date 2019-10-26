@@ -17,29 +17,7 @@ define([], function() {
 
     self.onLoad = function() {
 
-        $.ajax({
-            url: "http://194.94.239.22:3000/create-user",
-            type: "POST",
-            crossDomain: true,
-            data: {
-                "userName": "Ahmend",
-                "firstName": "khan",
-                "lastName": "khurram"
-            },
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type':'application/json'
-            },
-            dataType: 'jsonp',
-            success: function(res){
-                alert("response")
-                console.info(res)
-            },
-            error: function(res) {
-              console.info("ERROR");
-              console.info(res);
-            }
-          });       
+           
     };
 
     self.searchAddress = function() {
@@ -93,6 +71,32 @@ define([], function() {
 
     self.submit = function() {
       g_BaseVM.setFootNote("Offered", "success")
+
+
+      $.ajax({
+        url: "http://194.94.239.22:3000/create-user",
+        type: "POST",
+        crossDomain: true,
+        data: {
+          "startPoint":self.selectedAddress,
+          "endPoint":self.selectedAddress2,
+          "seats":self.seatsAvailable
+        },
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type':'application/json'
+        },
+        dataType: 'jsonp',
+        success: function(res){
+            alert("response")
+            console.info(res)
+        },
+        error: function(res) {
+          console.info("ERROR");
+          console.info(res);
+        }
+      });  
+
     };
   }
 

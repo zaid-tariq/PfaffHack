@@ -5,9 +5,11 @@ define(["binder"], function(_binder) {
     var self = this;
     var loadingSemaphore = 0;
 
-    self.showMenuButtons = ko.observable(true);
+    self.showMenuButtons = ko.observable(false);
     self.loadingText = ko.observable("");
     self.warningText = ko.observable("");
+
+    self.username = ko.observable("Guest");
 
     self.msg = ko.observable("hello!");
     self.showMessage = ko.observable(false);
@@ -89,7 +91,11 @@ define(["binder"], function(_binder) {
 
     self.showRideSearchPage = function() {
       binder.loadView("RideSearch", "RideSearch", "ridesearch");
-    };
+	};
+	
+	self.showMessagePage = function() {
+		binder.loadView("Message", "Message", "message");
+	  };
 
     self.showUpcomingRidespage = function() {
       binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides");

@@ -35,6 +35,10 @@ require(["config/config"], function() {
 
           case "RideSearch".toLowerCase():
             g_BaseVM.showRideSearchPage();
+			break;
+			
+		  case "ShowMessage".toLowerCase():
+            g_BaseVM.showShowMessagePage();
             break;
 
           case "UserSearchGivenEndPoints".toLowerCase():

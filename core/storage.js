@@ -35,12 +35,12 @@ class Storage {
                   "data": 1
               },
               "example": {
-                  "data": username
+                  "data": data_dict
               }
           }
         ).then((res)=>{
-            console.log(res["payload"]["event"]["result"]);
-           // this.find_second_user(res["payload"]["userId"], user2_name, message);
+            console.log(res["payload"]["event"]["result"][0]['data']);
+            return(res["payload"]["event"]["result"][0]['data'])
         }).catch((err)=>console.log(err))
     }
 }
