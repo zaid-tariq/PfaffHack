@@ -1,49 +1,76 @@
 <div id="ridesearch">
-    <h1 data-bind="text: myName"></h1>
-    <br><br>
-    <form>
+  <h1 data-bind="text: myName"></h1>
+  <br /><br />
+  <form>
     <div class="row">
-        <div class="col-md-12"> 
-            <div class="col-md-6"> 
-                <div class="form-group">
-                    <label>Start Point</label>
-                    <input
-                    class="form-control"
-                    placeholder="From"
-                    data-bind="value: username"
-                    />
-                </div>
-            </div>
-            <div class="col-md-6"> 
-                <div class="form-group">
-                    <label>Start Point</label>
-                    <input
-                    class="form-control"
-                    placeholder="From"
-                    data-bind="value: username"
-                    />
-                </div>
-            </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Start Point</label>
+            <input
+              class="form-control"
+              placeholder="From"
+              data-bind="value: searchQuery"
+            />
+          </div>
+          <div data-bind="foreach: addressSuggestions">
+            <div
+              class="address-search-result"
+              data-bind="html: label, click: $parent.chooseThisPlace, css:{'address-search-result-selected': $parent.selectedAddress().locationId == this.locationId}"
+            ></div>
+          </div>
         </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>End Point</label>
+            <input
+              class="form-control"
+              placeholder="From"
+              data-bind="value: username"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-bind="click: searchAddress"
+          >
+            Search
+          </button>
+        </div>
+      </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Date:</label>
-                    <input type="date" class="form-control" name="bday">
-                </div>
-            </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Date:</label>
+            <input type="date" class="form-control" />
+          </div>
         </div>
+      </div>
     </div>
-    <br>
+
+    <br />
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-primary" data-bind="click: submit">Search</button>
-            </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bind="click: submit"
+          >
+            Search
+          </button>
         </div>
+      </div>
     </div>
-    </form>
-  </div>
-  
+  </form>
+</div>

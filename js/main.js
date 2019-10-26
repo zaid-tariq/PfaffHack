@@ -38,6 +38,14 @@ require(["config/config"], function(){
 						g_BaseVM.showRideOfferPage()
 						break;
 						
+					case "RideSearch".toLowerCase():
+						g_BaseVM.showRideSearchPage()
+						break;
+
+					case "UserSearchGivenEndPoints".toLowerCase():
+						g_BaseVM.showUserSearchGivenEndPointspage()
+						break;
+
 					case "Admin".toLowerCase():
 					case "Home".toLowerCase():
 						if(g_BaseVM)
