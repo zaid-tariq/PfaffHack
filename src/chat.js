@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 send_message(user1_name, user2_name, message,eventBroker){
   eventBroker.request('get-user', {
     "username": user1_name
@@ -7,6 +8,69 @@ send_message(user1_name, user2_name, message,eventBroker){
     this.find_second_user(res["payload"]["userId"], user2_name, message);
   }).catch((err)=>console.log(err))
 }
+=======
+class Chat {
+    
+    // constructor(eventBroker){
+    //   this.eventBroker = eventBroker;
+    //    // this.eventBroker = require('../js/eventBrokerConnector')({
+    //    //      brokerHost: '194.94.239.125',
+    //    //      brokerPort: '9000',
+    //    //      appName: 'test-app',
+    //    //      appHost: '192.168.137.1',
+    //    //      appPort: '8080'
+    //    // });
+    //    // this.app = this.eventBroker.app;
+    //    // this.eventBroker.listen();
+    //    this.send_message("jacki", "ahhmed", "hhaha");
+
+    // }
+    constructor(){
+
+    }
+    send_message(user1_name, user2_name, message, eventBroker){  
+       //get_user ids
+
+       //create chat room
+
+       // eventBroker.subscribe('create-chat-global', (event, topic) => console.log(event) /* do something when this event occurs */)
+       // eventBroker.subscribe('create-user', (event, topic) => console.log(event) /* do something when this event occurs */)
+       
+       // eventBroker.subscribe('created-user', (event, topic) => console.log(event) /* do something when this event occurs */)
+       //this.eventBroker.subscribe('get-user', (event, topic) => console.log(event) /* do something when this event occurs */)
+
+       // eventBroker.request('create-user', {
+       //          "username": "jacki",
+       //          "firstName": "ahmed",
+       //          "lastName": "ha"
+       //      },
+       //      ["user-add"]
+       //  ).then((res)=>{
+       //      console.log(res)
+       //  }).catch((err)=>console.log(err))
+
+       this.eventBroker.request('get-user', {
+                "username": user1_name
+            }
+        ).then((res)=>{
+            console.log(res);
+            this.find_second_user(res["payload"]["userId"], user2_name, message);
+        }).catch((err)=>console.log(err))
+    }
+
+    find_second_user(user1_id, user_2name, message){
+
+      //
+      console.log(user1_id);
+      this.eventBroker.request('get-user', {
+                "username": user_2name
+            }
+        ).then((res)=>{
+            console.log(res);
+            this.find_chat_room(user1_id, res["payload"]["userId"],
+              message);
+        }).catch((err)=>console.log(err))
+>>>>>>> 7d1f3b852c6236493555f7f6c3b1a605bdef48a3
 
 find_second_user(user1_id, user_2name, message){
   console.log(user1_id);
@@ -67,3 +131,4 @@ send_message_(user1_id, user2_id, roomId, message){
 }
 
 // var chat = new Chat();
+module.exports = Chat;

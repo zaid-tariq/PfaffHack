@@ -1,7 +1,34 @@
+<<<<<<< HEAD
 class User{
 
     create_user(username, firstName, lastName, eventBroker){
         // eventBroker.subscribe('create-user', (event, topic) => console.log(event) /* do something when event occurs */
+=======
+
+class User{
+    constructor(username, firstName, lastName, eventBroker){
+        //const Chat = require('./chat.js');
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eventBroker = eventBroker;
+       //  this.eventBroker = require('../js/eventBrokerConnector')({
+       //      brokerHost: '194.94.239.125',
+       //      brokerPort: '9000',
+       //      appName: 'test-app',
+       //      appHost: '192.168.137.1',
+       //      appPort: '8080'
+       // });
+        // this.app = this.eventBroker.app;
+        // this.create_user();
+        // const s = new Chat();
+        // s.send_message("jacki", "ahhmed", "hhaha");
+    }
+    
+
+    create_user(){
+        // eventBroker.subscribe('create-user', (event, topic) => console.log(event) /* do something when this event occurs */
+>>>>>>> 7d1f3b852c6236493555f7f6c3b1a605bdef48a3
         // )
         // eventBroker.listen();
        
@@ -16,4 +43,5 @@ class User{
     }
 
 }
-// var user = new User("jacki", "jack","huels");
+//var user = new User("jacki", "jack","huels");
+module.exports = User;
