@@ -18,14 +18,14 @@ define([], function() {
           "by":"user1",
           "from":"startlocation",
           "to":"endlocation",
-          "seats":"4"
+          "seats":ko.observable(4)
         },
         {
           "id":"2",
           "by":"user2",
           "from":"startlocation",
           "to":"endlocation",
-          "seats":"2"
+          "seats":ko.observable(2)
         }
         ];
         
@@ -34,8 +34,21 @@ define([], function() {
       };
 
       self.selectRide = function(arg) {
-        g_BaseVM.proceedWithWarning(arg.by + " - " + arg.from + " - " + arg.to)
+
+        arr = self.ridesList()
+        g_BaseVM.proceedWithWarning(arg.by + " - " + arg.from + " - " + arg.to, function(){
+          for (i in arr){
+            var objj = arr[i];
+            if (objj.id == arg.id){
+              newseats = objj.seats()-1;
+              objj.seats(newseats);
+              g_BaseVM.setFootNote("RIDE BOOKED", "success")
+              break;
+            }
+          }
+        });
       };
+
   
       self.reset = function() {
         // alert("reset");
