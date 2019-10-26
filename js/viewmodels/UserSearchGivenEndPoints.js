@@ -6,6 +6,10 @@ define([], function() {
     self.firstName = ko.observable();
     self.lastName = ko.observable();
     self.ridesList = ko.observableArray();
+    self.myStartPos = ko.observable()
+    self.myEndPos = ko.observable()
+    self.APP_ID = "WpwySCOwyFoixH4fFs0B";
+    self.APP_CODE = "SDh1tnEiV0cj1ZYtojznQA";
 
     //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
     function calcCrow(coords1, coords2, R) {
@@ -32,6 +36,23 @@ define([], function() {
     }
 
     self.onLoad = function() {
+      if (localStorage.getItem("start") === null) {
+        //...
+      } else {
+        console.info(sessionStorage.getItem("start"));
+        console.info(sessionStorage.getItem("end"));
+        s
+        self.sendRequestToHereAPI(essionStorage.getItem("start"), function(start){
+          self.myStartPos(start)
+          console.info(self.myStartPos());
+        })
+
+        self.sendRequestToHereAPI(essionStorage.getItem("end"), function(end){
+            self.myEndPos(end)
+            console.info(self.myEndPos());
+        })
+      }
+
       var startPoint; //start address
       var endPoint; //end address
 
@@ -54,6 +75,28 @@ define([], function() {
       ];
 
       self.ridesList(res);
+    };
+
+    self.sendRequestToHereAPI = function(query, callback) {
+      url =
+        "https://geocoder.api.here.com/6.2/geocode.json?app_id=" +
+        self.APP_ID +
+        "&app_code=" +
+        self.APP_CODE +
+        "&searchtext=" +
+        encodeURI(query);
+      // +"&gen=8";
+
+      console.info(url);
+
+      $.ajax({
+        url: url,
+        success: callback,
+        error: function(res) {
+          console.info("ERROR");
+          console.info(res);
+        }
+      });
     };
 
     self.selectRide = function(arg) {

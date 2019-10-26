@@ -8,27 +8,66 @@ define([], function() {
     self.searchQuery = ko.observable("");
     self.addressSuggestions = ko.observableArray();
     self.selectedAddress = ko.observable();
+    self.searchQuery2 = ko.observable("");
+    self.addressSuggestions2 = ko.observableArray();
+    self.selectedAddress2 = ko.observable();
+    self.seatsAvailable = ko.observable();
     self.APP_ID = "WpwySCOwyFoixH4fFs0B";
     self.APP_CODE = "SDh1tnEiV0cj1ZYtojznQA";
-    self.Query = "Pariser+1+Berl";
 
-    self.onLoad = function() {};
+    self.onLoad = function() {
+
+        $.ajax({
+            url: "http://194.94.239.22:3000/create-user",
+            type: "POST",
+            crossDomain: true,
+            data: {
+                "userName": "Ahmend",
+                "firstName": "khan",
+                "lastName": "khurram"
+            },
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type':'application/json'
+            },
+            dataType: 'jsonp',
+            success: function(res){
+                alert("response")
+                console.info(res)
+            },
+            error: function(res) {
+              console.info("ERROR");
+              console.info(res);
+            }
+          });       
+    };
 
     self.searchAddress = function() {
+      self.sendRequestToHereAPI(self.searchQuery(), function(res) {
+        self.addressSuggestions(res["suggestions"]);
+      });
+    };
+
+    self.searchAddress2 = function() {
+      self.sendRequestToHereAPI(self.searchQuery2(), function(res) {
+        console.info(res);
+        self.addressSuggestions2(res["suggestions"]);
+      });
+    };
+
+    self.sendRequestToHereAPI = function(query, callback) {
       url =
         "http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=" +
         self.APP_ID +
         "&app_code=" +
         self.APP_CODE +
         "&query=" +
-        self.searchQuery() +
+        query +
         "&beginHighlight=<b>&endHighlight=</b>";
+
       $.ajax({
         url: url,
-        success: function(res) {
-          console.info(res);
-          self.addressSuggestions(res["suggestions"]);
-        },
+        success: callback,
         error: function(res) {
           console.info("ERROR");
           console.info(res);
@@ -37,24 +76,25 @@ define([], function() {
     };
 
     self.chooseThisPlace = function(point) {
-      console.info(point);
       self.selectedAddress(point);
       console.info(self.selectedAddress());
     };
 
-    self.reset = function() {
-      // alert("reset");
+    self.chooseThisPlace2 = function(point) {
+      self.selectedAddress2(point);
+      console.info(self.selectedAddress2());
     };
 
+    self.reset = function() {};
+
     self.onExit = function() {
-      // alert("onexit");
       self.reset();
     };
 
     self.submit = function() {
-      console.info(self.firstName());
-      console.info(self.lastName());
-      console.info(self.username());
+      sessionStorage.setItem("start", self.selectedAddress().label);
+      sessionStorage.setItem("end", self.selectedAddress2().label);
+      g_BaseVM.showUserSearchGivenEndPointspage();
     };
   }
 
@@ -62,5 +102,4 @@ define([], function() {
     getInstance: function() {
       return new VM();
     }
-  };
-});
+  };});
