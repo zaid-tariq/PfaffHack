@@ -1,0 +1,257 @@
+<div id="createRulesPage">
+
+	<div id="createRulesPageContainer">		
+	
+
+		<div id="rulesHeader" class="row">
+			
+			<div class="col-xs-12">
+				
+				<div class="col-xs-3">
+						<label for="marketField">Select Market: </label>
+				</div>
+
+				<div class="col-xs-2 col-sm-2 no_padding">
+					<select id="marketField" class="form-control zero_border" data-bind="options: marketOptions, optionsCaption: '', value: selectedMarket"></select>
+				</div>
+				
+				<div class="col-xs-3 col-xs-offset-1">
+					<label for="marketField" style="float:right" >Select BOM: </label>
+				</div>
+
+				<div class="col-xs-2 col-sm-2 no_padding">
+					<select id="bomField" class="form-control zero_border" data-bind="options: existingBomOptions, optionsCaption:'', value:bomToLoad"></select>						
+				</div>
+
+				<div class="col-xs-1 col-sm-1">
+					<button class="btn btn-default grey_buttons" data-bind="click:loadExistingBom">Load</button>
+				</div>
+
+			</div>
+		</div>
+
+		<hr>
+
+		<!-- <div class="row" data-bind="visible: showTabs"> -->
+		<div class="row">
+			
+			<ul class="nav nav-tabs">
+				
+				<li class="active"><a href="#rulesBomTable" data-toggle="tab">BOM Table</a></li>
+				<li><a href="#complexRules" data-toggle="tab">Complex Rules</a></li>
+
+			</ul>
+
+			<div class="tab-content">
+
+				<div id="rulesBomTable" class="tab-pane active apply_border">
+
+					<div class="table-responsive">
+
+						<table class="table table-hover table-condensed" id="rules_table">							
+							<tbody data-bind="foreach: featureSets">
+								<tr data-bind="attr:{class: attrClass, id: number}, style:{display: rowType=='featureOption'?'none':'' }">
+									
+									<td class="col-xs-1" data-bind="if: rowType == 'featureSet'">
+
+										<button class="btn btn-link" data-bind="click: toggleChildren"> 
+											<i class="glyphicon glyphicon-plus" data-bind="visible: !isChildrenShown()"></i>
+											<i class="glyphicon glyphicon-minus" data-bind="visible: isChildrenShown()"></i>
+										</button>
+
+									</td>		
+
+									<td data-bind="text: number, style:{'text-indent': rowType=='featureOption'?'2em': '0'">
+									</td>
+
+									<!-- ko if: rowType =='featureOption'-->
+
+									<td class="pull-right">
+
+										<div class="col-xs-12">
+											<select class="form-control" data-bind="options: simpleRuleOptions, value:simpleRule, event:{change: changeHandler}"></select>
+										</div>	
+
+									</td>
+
+									<!-- /ko -->
+
+									<!-- ko if: rowType =='featureSet'-->
+
+									<td class="pull-right">
+										
+										<div class="col-xs-4">
+											<input id="min" class="form-control" type="text" data-bind="value: min, event:{change: $data.validateMinValue}" placeholder="Minimum" />
+										</div>
+
+										<div class="col-xs-4" style="text-align:center">
+											&gt; Count &lt;
+										</div>									
+
+										<div class="col-xs-4">
+											<input id="max" class="form-control" type="text" data-bind="value: max, event:{change: validateMaxValue}" placeholder="Maximum" />
+										</div>
+									</td>
+									<!-- /ko -->
+
+								</tr>
+								
+							</tbody>
+							
+						</table>	
+					</div>
+					
+
+				</div>
+
+				<div id="complexRules" class="tab-pane apply_border">
+					
+					<div class="col-xs-12 no_padding">
+						<button class="pull-right btn btn-link no_padding" data-bind="click: showComplexRulesPopup"> Add New Rule </button>
+					</div>
+					<table class="table table-hover table-condensed" id="newruleTable">
+						<tbody data-bind="foreach: complexRulesList">
+							<tr>
+								<td class="col-xs-12 col-sm-2">
+									<button class="btn btn-link" data-bind="click: $root.openExistingRuleInPopup, text: id" id="rule_button"></button>
+								</td>
+								<td class="col-xs-12 col-sm-9" id="rule_text">
+									<span data-bind="text: expressionText"></span>
+								</td>
+<!-- 								<td > -->
+<!-- 									<button class="btn btn-link" data-bind="click: $root.removeRule, attr:{'data-id':number}">  -->
+<!-- 										<li class="glyphicon glyphicon-trash"></li> -->
+<!-- 									</button> -->
+<!-- 								</td> -->
+							</tr>
+						</tbody>
+					</table>
+<!-- 					<div data-bind="foreach: complexRulesList"> -->
+<!-- click: openExistingRuleInPopup, -->
+<!-- 						<div class="row" id="rules_div"> -->
+
+<!-- 							<div class="col-xs-12 col-sm-2"> -->
+<!-- 								<button class="btn btn-link" data-bind="click: $root.openExistingRuleInPopup, text: id" id="rule_button"></button> 	 -->
+<!-- 							</div> -->
+
+<!-- 							<div class="col-xs-12 col-sm-9" id="rule_text"> -->
+<!-- 								<span data-bind="text: expressionText"></span>	 -->
+<!-- 							</div> -->
+							
+							
+<!-- 						</div> -->
+<!-- 					</div> -->
+
+				</div>
+
+			</div>
+
+			<div class="row">
+				
+				<div class="col-xs-12">
+					<button class="btn btn-default pull-right zero_border" data-bind="click: saveRules"> <li class="glyphicon glyphicon-floppy-disk" ></li> Save </button>	
+				</div>
+
+			</div>
+			
+		</div>
+
+		
+
+	</div>
+	
+	<div id="complexRulesPopup" class="modal fade" data-bind="with: complexRuleInPopup()">
+		<div class="modal-dialog">
+			<div class="modal-content" id="add_rule_popup">
+
+				<div class="modal-header">
+					
+					<div class="row">
+						
+						<div class="col-xs-1 col-xs-offset-1">
+							<h4> Scope</h4>
+						</div>
+						
+						<div class="col-xs-7 col-xs-offset-1">
+
+							<select class="form-control zero_border" data-bind="options: scopeOptions, value: selectedScope, event:{ change: changeScope }">
+							</select>
+
+						</div>
+
+					</div>
+				</div>
+
+				<div class="modal-body" >	
+					<div class="col-xs-1">
+								<h4> If: </h4>
+					</div>
+					<div class="row" data-bind="foreach: LHS" id="if_div">
+						<div class="col-xs-12">
+							
+							
+							<div class="col-xs-12 col-sm-3" data-bind="if: showLogicalOperators">
+								<select class="form-control zero_border" data-bind="options: logicalOperators, value: selectedLogicalOperator"></select>
+							</div>
+
+							<div class="col-xs-12 col-sm-4" >
+								<select class="form-control zero_border" data-bind="options: availableFeatures, optionsCaption: 'Choose...', value: selectedFeature, event:{change: $parent.updateAvailableFeaturesInAllConditions}"></select>
+							</div>
+							
+							<div class="col-xs-1">
+								<b> is </b>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4">
+								<select class="form-control zero_border" data-bind="options: operatorsForFeatures, value: selectedOperatorForFeature"></select>											
+							</div>	
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button data-bind="click: addToLHS" class="btn btn-link pull-right">Add Another Condition</button>
+				</div>
+
+				<div class="modal-body" >
+					<div class="col-xs-1">
+								<h4> Then: </h4>
+					</div>
+					<div class="row" data-bind="foreach: RHS" id="then_div"> 
+						<div class="col-xs-12">
+
+							<div class="col-xs-12 col-sm-3" data-bind="if: showLogicalOperators">
+								<select class="form-control zero_border" data-bind="options: logicalOperators, value: selectedLogicalOperator"></select>
+							</div>
+
+							<div class="col-xs-12 col-sm-4" >
+								<select class="form-control zero_border" data-bind="options: availableFeatures, optionsCaption: 'Choose...', value: selectedFeature, event:{change: $parent.updateAvailableFeaturesInAllConditions}"></select>
+							</div>
+							
+							<div class="col-xs-1">
+								<b> is </b>
+							</div>
+							
+							<div class="col-xs-12 col-sm-4">
+								<select class="form-control zero_border" data-bind="options: operatorsForFeatures, value: selectedOperatorForFeature"></select>											
+							</div>	
+
+						</div>
+					</div>
+					
+							</div>
+
+				<div class="modal-footer">
+					<button data-bind="click: addToRHS" class="btn btn-link pull-right">Add Another Condition</button>
+				</div>
+
+				<div class="modal-footer">
+					<button class="btn btn-primary zero_border" data-dismiss="modal" data-bind="click: $root.persistRule, visible:showSaveButton"> Save Rule</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>

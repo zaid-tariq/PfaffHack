@@ -26,7 +26,8 @@ class User{
         this.eventBroker.request('create-user', {
                 "username": this.username,
                 "firstName": this.firstName,
-                "lastName": this.lastName            }
+                "lastName": this.lastName
+        }
         ).then((res)=>{
             console.log(res);
         }).catch((err)=>console.log(err))

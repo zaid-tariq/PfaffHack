@@ -1,0 +1,24 @@
+<div id="signin">
+  <h1 data-bind="text: myName"></h1>
+
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input
+        class="form-control"
+        placeholder="Enter name"
+        data-bind="value: username"
+      />
+    </div>
+    <div class="form-group">
+      <label>Firstname</label>
+      <input
+        class="form-control"
+        placeholder="firstname"
+        data-bind="value: firstName"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary" data-bind="click: submit">Submit</button>
+  </form>
+</div>
