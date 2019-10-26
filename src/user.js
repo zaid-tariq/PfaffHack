@@ -1,32 +1,14 @@
 class User{
 
-
-    constructor(username, firstName, lastName, eventBroker){
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.eventBroker = eventBroker;
-       //  this.eventBroker = require('../js/eventBrokerConnector')({
-       //      brokerHost: '194.94.239.125',
-       //      brokerPort: '9000',
-       //      appName: 'test-app',
-       //      appHost: '192.168.137.1',
-       //      appPort: '8080'
-       // });
-        // this.app = this.eventBroker.app;
-        this.create_user();
-    }
-    
-
-    create_user(){
-        // eventBroker.subscribe('create-user', (event, topic) => console.log(event) /* do something when this event occurs */
+    create_user(username, firstName, lastName, eventBroker){
+        // eventBroker.subscribe('create-user', (event, topic) => console.log(event) /* do something when event occurs */
         // )
-        // this.eventBroker.listen();
+        // eventBroker.listen();
        
-        this.eventBroker.request('create-user', {
-                "username": this.username,
-                "firstName": this.firstName,
-                "lastName": this.lastName
+        eventBroker.request('create-user', {
+                "username": username,
+                "firstName": firstName,
+                "lastName": lastName
         }
         ).then((res)=>{
             console.log(res);

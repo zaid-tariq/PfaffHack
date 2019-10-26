@@ -2,14 +2,42 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (request, response) => {
-  response.send('Welcome to the API which does everything!')
+
+const eventBroker = require('./eventBrokerConnector')({
+  brokerHost: '194.94.239.125', // use correct data
+  brokerPort: '9000', // use correct data
+  appName: 'Smart Commute',
+  appHost: '194.94.239.22',
+  appPort: '8884',
 })
+
+
+// an express app with json body parser, you may pass your own express instance instead as second argument to the init function
+
+// you have to call listen once your setup is finished
+// only then you will receive notifications upon events you subscribed to
+eventBroker.listen()
+
+
+// app.get('/', (request, response) => {
+//   response.send('Welcome to the API which does everything!')}
 
 app.post('/create-user', (request, response) => {
   first_name = request.headers["firstName"]
   last_name = request.headers["lastName"]
   user_name = request.headers["userName"]
+  
+  // var instance = require('./user.js');
+  // instance.create_user(user_name,first_name,last_name,eventBroker);
+  eventBroker.request('create-user', {
+    "username": user_name,
+    "firstName": first_name,
+    "lastName": last_name
+    }
+    ).then((res)=>{
+        console.log(res);
+    }).catch((err)=>console.log(err)) 
+
   response.send('User Created Successfully!')
 })
 
@@ -17,9 +45,8 @@ app.post('/send-message', (request, response) => {
   user_name_from = request.headers["userNameFrom"]
   user_name_to = request.headers["userNameTo"]
   message = request.headers["message"]
-  console.log(request.headers)
-  response.send(message)
 
+  response.send(message)
 })
 
 
@@ -29,8 +56,6 @@ app.listen(port, (err) => {
   }
   console.log(`server is listening on ${port}`)
 })
-
-
 
 
 
