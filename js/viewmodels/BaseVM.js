@@ -91,7 +91,11 @@ define(["binder"], function(_binder) {
 
     self.showRideSearchPage = function() {
       binder.loadView("RideSearch", "RideSearch", "ridesearch");
-    };
+	};
+	
+	self.showMessagePage = function() {
+		binder.loadView("Message", "Message", "message");
+	  };
 
     self.showUpcomingRidespage = function() {
       binder.loadView("UpcomingRides", "UpcomingRides", "upcomingrides");
