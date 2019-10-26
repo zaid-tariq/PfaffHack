@@ -2,6 +2,17 @@
 	white-space: normal;
 }
 
+.address-search-result:hover{
+
+	background: #eee;
+	cursor: pointer;
+}
+
+.address-search-result-selected{
+
+	background: #eee;
+}
+
 .navbar-default, footer {
 	background-color: #202020;
     border-color: #202020;
