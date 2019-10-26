@@ -111,6 +111,11 @@ define(["binder"], function(_binder){
 			binder.loadView("RideOffer", "RideOffer", "RideOffer")
 		}
 
+		self.showUserSearchGivenEndPointspage = function(){
+
+			binder.loadView("UserSearchGivenEndPoints", "UserSearchGivenEndPoints", "usersearchgivenendpoints")
+		}
+
 		self.onLoad = function(){		
 			// alert("BaseVM");
 		}
