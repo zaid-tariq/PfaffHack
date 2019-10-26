@@ -93,6 +93,13 @@ define([], function() {
 
     self.submit = function() {
       g_BaseVM.setFootNote("Offered", "success")
+
+      var rideOffer = {     
+        "startPoint":self.selectedAddress,
+        "endPoint":self.selectedAddress2,
+        "seats":self.seatsAvailable
+      };
+
     };
   }
 

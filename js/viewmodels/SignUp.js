@@ -19,9 +19,12 @@ define([], function() {
 
     self.submit = function() {
         
-      console.info(self.firstName());
-      console.info(self.lastName());
-      console.info(self.username());
+      // console.info(self.firstName());
+      // console.info(self.lastName());
+      // console.info(self.username());
+      g_BaseVM.showMenuButtons(true);
+      g_BaseVM.username(self.username);
+      g_BaseVM.showRideSearchPage();
     };
   }
 

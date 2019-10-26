@@ -21,8 +21,8 @@
               class="col-md-2"
               data-bind="click: showLandingPage "
             >
-              <img id="logoImg" src="img/logo.png" />
-              <span>Pfaff Hack</span>
+              <img id="logoImg" src="img/fraunhofer_logo.png" />
+              <label style="color: white;">Pfaff Hack</span>
             </div>
 
             <div id="navbar" class="col-md-10" class="navbar-collapse collapse">
@@ -30,51 +30,56 @@
                 class="nav navbar-nav navbar-right"
                 data-bind="if: showMenuButtons"
               >
-                <li class="active">
+                <!-- <li>
                   <a class="btn btn-link" data-bind="click: showLandingPage">
                     Home
                   </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                   <a
                     class="btn btn-link"
                     data-bind="click: showUserSearchGivenEndPointspage"
                   >
                     Search Results
                   </a>
-                </li>
-                <li>
-                  <a
-                    class="btn btn-link"
-                    data-bind="click: showRideRequestspage"
-                  >
-                    Ride Requests
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="btn btn-link"
-                    data-bind="click: showUpcomingRidespage"
-                  >
-                    Upcoming Rides
-                  </a>
-                </li>
-                <li>
-                  <a class="btn btn-link" data-bind="click: showRideReviewpage">
-                    Review Rides
-                  </a>
-                </li>
-                <li>
-                  <a class="btn btn-link" data-bind="click: showRideSearchPage">
-                    Ride Search
-                  </a>
-                </li>
+                </li> -->
+                
+                <li class="active">
+					<a 
+						class="btn btn-link" data-bind="click: showRideSearchPage"
+					>
+						Ride Search
+					</a>
+				</li>
+				<li>
+					<a
+						class="btn btn-link"
+						data-bind="click: showRideRequestspage"
+					>
+						Ride Requests
+					</a>
+				</li>
+				<li>
+					<a
+						class="btn btn-link"
+						data-bind="click: showUpcomingRidespage"
+					>
+						Upcoming Rides
+					</a>
+				</li>
+				<li>
+					<a 
+						class="btn btn-link" data-bind="click: showRideReviewpage"
+					>
+						Review Rides
+					</a>
+				</li>
                 <li>
                   <a class="btn btn-link" data-bind="click: showRideOfferPage">
                     Ride Offer
                   </a>
                 </li>
-                <li>
+                <!-- <li>
                   <a class="btn btn-link" data-bind="click: showSignInPage">
                     Sign In
                   </a>
@@ -83,7 +88,7 @@
                   <a class="btn btn-link" data-bind="click: showSignUpPage">
                     Sign Up
                   </a>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -157,8 +162,8 @@
     </div>
 
     <footer class="footer">
-      <div class="container text-center">
-        Powered By <a href="http://www.xavor.com">TU KL</a>
+      <div class="container text-center" style="color: white;">
+        Powered By <a href="http://www.xavor.com">A-Team</a>
       </div>
     </footer>
 
